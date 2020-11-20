@@ -1,0 +1,15 @@
+{
+    "project_name": "test_project",
+    "author": "Anonymous",
+    "email": "pierre",
+    "author_short": "short",
+    "project_brief": "Testing",
+    "description": "Description",
+    "copyright": "2012",
+    "url": "http://github.com/test",
+    "version": "version",
+    "license": "BSD 3-Clause License",
+    "_copy_without_render": [
+        "dependencies"
+    ]
+}
