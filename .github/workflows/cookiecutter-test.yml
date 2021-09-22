@@ -1,0 +1,42 @@
+name: cookiecutter-tests
+
+on: [push]
+
+jobs:
+  cookiecutter-compile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+
+      - name: Install tools
+        run: |
+          pip install gcovr cookiecutter
+        
+      - name: Run Cookiecutter
+        run: |
+          cookiecutter --no-input https://github.com/kiwi-lang/python_seed
+
+      - name: Install dependencies
+        run: |
+          cd test_project
+          python -m pip install --upgrade pip
+          pip install virtualenv
+          python -m venv ~/unittest_env
+          source ~/unittest_env/bin/activate
+          pip install flake8
+          make install
+
+      - name: tests-doc
+        run: |
+          cd test_project
+          source ~/unittest_env/bin/activate
+          make tests-doc
