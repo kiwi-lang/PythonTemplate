@@ -12,5 +12,4 @@ if __name__ == '__main__':
             '{{cookiecutter.project_name}}',
         ],
         setup_requires=['setuptools'],
-        tests_require=['pytest', 'flake8', 'codecov', 'pytest-cov'],
     )
