@@ -27,16 +27,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd test_project
+          cd myproject
           python -m pip install --upgrade pip
           pip install virtualenv
-          python -m venv ~/unittest_env
-          source ~/unittest_env/bin/activate
+          python -m venv ~/env
+          source ~/env/bin/activate
           pip install tox
           make install
 
       - name: tests-doc
         run: |
-          cd test_project
-          source ~/unittest_env/bin/activate
+          cd myproject
+          source ~/env/bin/activate
           tox -e py
