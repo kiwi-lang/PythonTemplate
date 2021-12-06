@@ -19,8 +19,8 @@ jobs:
 
       - name: Install tools
         run: |
-          pip install gcovr cookiecutter
-        
+          pip install cookiecutter
+
       - name: Run Cookiecutter
         run: |
           cookiecutter --no-input https://github.com/kiwi-lang/python_seed
@@ -32,11 +32,11 @@ jobs:
           pip install virtualenv
           python -m venv ~/unittest_env
           source ~/unittest_env/bin/activate
-          pip install flake8
+          pip install tox
           make install
 
       - name: tests-doc
         run: |
           cd test_project
           source ~/unittest_env/bin/activate
-          make tests-doc
+          tox -e py
