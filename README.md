@@ -25,5 +25,6 @@ Auto format your code before pushing
 
 ```
 tox -e run-block
+
 tox -e run-isort
 ```
