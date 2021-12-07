@@ -40,3 +40,8 @@ jobs:
           cd myproject
           source ~/env/bin/activate
           tox -e py
+          tox -e black
+          tox -e isort
+          tox -e doc8
+          tox -e docs
+          tox -e pylint
