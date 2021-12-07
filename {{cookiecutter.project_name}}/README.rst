@@ -6,7 +6,3 @@
 
    pip install {{cookiecutter.project_name}}
 
-
-
-
-
