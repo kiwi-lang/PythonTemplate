@@ -1,28 +1,28 @@
-__descr__ = '{{cookiecutter.description}}'
-__version__ = '{{cookiecutter.version}}'
-__license__ = '{{cookiecutter.license}}'
-__author__ = u'{{cookiecutter.author}}'
-__author_email__ = '{{cookiecutter.email}}'
-__copyright__ = u'{{cookiecutter.copyright}} {{cookiecutter.author}}'
-__url__ = '{{cookiecutter.url}}'
+"""Top level module for {{cookiecutter.project_name}}"""
+
+__descr__ = "{{cookiecutter.description}}"
+__version__ = "{{cookiecutter.version}}"
+__license__ = "{{cookiecutter.license}}"
+__author__ = u"{{cookiecutter.author}}"
+__author_email__ = "{{cookiecutter.email}}"
+__copyright__ = u"{{cookiecutter.copyright}} {{cookiecutter.author}}"
+__url__ = "{{cookiecutter.url}}"
 
 
-
-
-def my_function(a: int, b: int) -> int:
+def my_function(lhs: int, rhs: int) -> int:
     """Add two numbers together
 
     Parameters
     ----------
-    a: int
+    lhs: int
         first integer
 
-    b: int
+    rhs: int
         second integer
 
     Raises
     ------
-    value errror if a == 0
+    value errror if lhs == 0
 
     Examples
     --------
@@ -35,7 +35,7 @@ def my_function(a: int, b: int) -> int:
     ValueError
 
     """
-    if a == 0:
+    if lhs == 0:
         raise ValueError()
 
-    return a + b
+    return lhs + rhs
