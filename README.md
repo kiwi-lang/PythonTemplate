@@ -7,7 +7,7 @@ Features:
     * Read the docs ready
 * Github CI
     * Test Coverage + Doctest
-    * black formating
+    * black formatting
     * pylint
     * isort
     * docs8
@@ -16,15 +16,28 @@ Features:
 
 ```
 pip install cookiecutter
-cookiecutter https://github.com/kiwi-lang/python_seed
+cookiecutter https://github.com/kiwi-lang/PythonTemplate
+
 ```
 
 ## Automation
 
-Auto format your code before pushing
+* Auto format your code before pushing
 
 ```
-tox -e run-block
-
-tox -e run-isort
+tox -e checks
 ```
+
+*  PYPI publishing automation
+    * Add ``TEST_PYPI_PASSWORD`` and ``PYPI_PASSWORD`` secrets to the publish job
+    * Manually start the publish workflow for the tag you want to release
+
+
+## Plugins
+
+User can extend you library using plugins
+
+
+## Data
+
+You can add user data using the ``data`` folder inside your module

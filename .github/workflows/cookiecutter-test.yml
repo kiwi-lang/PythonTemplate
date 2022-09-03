@@ -23,7 +23,7 @@ jobs:
 
       - name: Run Cookiecutter
         run: |
-          cookiecutter --no-input https://github.com/kiwi-lang/python_seed
+          cookiecutter -f --no-input https://github.com/kiwi-lang/PythonTemplate
 
       - name: Install dependencies
         run: |
@@ -38,10 +38,15 @@ jobs:
       - name: tests-doc
         run: |
           cd myproject
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          git init
+          git add --all
+          git commit -m "-"
           source ~/env/bin/activate
           tox -e py
-          tox -e black
-          tox -e isort
-          tox -e doc8
           tox -e docs
           tox -e pylint
+          tox -e packaging
+          tox -e build
+          tox -e checks
