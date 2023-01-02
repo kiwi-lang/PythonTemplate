@@ -11,8 +11,7 @@ with open("{{cookiecutter.project_name}}/core/__init__.py") as file:
             break
 
 assert (
-    os.path.exists(os.path.join("{{cookiecutter.project_name}}", "__init__.py"))
-    is False
+    os.path.exists(os.path.join("{{cookiecutter.project_name}}", "__init__.py")) is False
 ), "{{cookiecutter.project_name}} is a namespace not a module"
 
 extra_requires = {"plugins": ["importlib_resources"]}
