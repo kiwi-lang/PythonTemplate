@@ -20,6 +20,38 @@ cookiecutter https://github.com/kiwi-lang/PythonTemplate
 
 ```
 
+## Layout
+
+```
+   project
+   ├── .github/workflows
+   |    ├── publish.yml       # Publish package to PyPi
+   |    ├── style.yml         # Test for style (black, isort, pep8)
+   |    └── test.yml          # Run unit tests
+   ├── docs
+   |    ├── conf.py           # Sphinx configuration
+   |    ├── requirements.txt  # Sphinx requirements
+   |    └── index.rst         # Sphinx main page
+   ├── examples
+   ├── project                # Project namespace
+   |    ├── core              # Project code
+   |    |    ├── __init__.py
+   |    |    └── somecode.py
+   |    ├── data              # Project bundled data
+   |    └── plugins           # Project plugin namespace extendable by third parties
+   |        └── example
+   |            └── __init__.py
+   ├── tests                  # Project tests
+   |    ├── requirements.txt
+   |    └── test_project.py   
+   ├── LICENSE                # Project license
+   ├── MANIFEST.in            
+   ├── README.rst             # README and first page of doc
+   ├── requirements.txt       # package requirements
+   ├── setup.py               # Project installation definitition
+   └── tox.ini                # Automation
+```
+
 ## Automation
 
 * Auto format your code before pushing
