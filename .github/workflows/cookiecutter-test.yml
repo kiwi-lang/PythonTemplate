@@ -1,6 +1,12 @@
 name: cookiecutter-tests
 
-on: [push]
+on:
+  push:
+  workflow_dispatch:
+  # Runs every sunday
+  schedule:
+      - cron: '0 0 * * SUN'
+
 
 jobs:
   cookiecutter-compile:
