@@ -9,6 +9,7 @@ exclude tox.ini
 exclude Makefile
 exclude .pylintrc
 exclude .pre-commit-config.yaml
+exclude scripts/generate_cookie.sh
 
 prune docs
 prune tests
