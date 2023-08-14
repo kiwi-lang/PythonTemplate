@@ -30,9 +30,9 @@ if __name__ == "__main__":
         url="https://{{cookiecutter.project_name}}.readthedocs.io",
         classifiers=[
             "License :: OSI Approved :: BSD License",
-            "Programming Language :: Python :: 3.7",
             "Programming Language :: Python :: 3.8",
             "Programming Language :: Python :: 3.9",
+            "Programming Language :: Python :: 3.10",
             "Operating System :: OS Independent",
         ],
         packages=[
