@@ -24,8 +24,12 @@
    :target: https://github.com/{{cookiecutter.github}}/{{cookiecutter.project_name}}/actions/workflows/style.yml
 
 
-
 .. code-block:: bash
 
    pip install {{cookiecutter.project_name}}
 
+
+Features
+--------
+
+* ....
