@@ -1,6 +1,7 @@
 name: openpr
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
@@ -9,13 +10,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-  
+      with:
+        fetch-depth: 0
+
     - name: dependencies
       run: | 
         sudo apt-get install -y git rsync jq
 
     - name: OpenPR
-      env:
-        PAT: ${{ secrets.PUSH_KEY }}
       run: |
         bash scripts/generate_cookie.sh
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

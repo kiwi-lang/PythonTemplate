@@ -24,8 +24,13 @@ TemplateExample
    :target: https://github.com/TemplateGithub/TemplateExample/actions/workflows/style.yml
 
 
-
 .. code-block:: bash
 
    pip install TemplateExample
 
+
+Features
+--------
+
+* Feature 1
+* Feature 2

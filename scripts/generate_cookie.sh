@@ -6,7 +6,6 @@ set -evx
 # Generate a cookiecutter version of this repository
 #
 COOKIE=https://github.com/kiwi-lang/PythonTemplate.git
-EXAMPLE=https://github.com/Delaunay/PythonTemplateExample.git
 
 git config --global user.email "GithubAction@example.com"
 git config --global user.name "GithubAction"
@@ -23,11 +22,13 @@ rm -rf PythonTemplateExample/tasks/__pycache__
 dest=../PythonTemplateGen
 
 # Get the latest version of the cookiecutter
-git clone $COOKIE $dest
+# git clone $COOKIE $dest
 
 # Copy the current version of our code in the cookiecutter
 COOKIED=$dest/'{{cookiecutter.project_name}}'
+mkdir -p $COOKIED
 
+# Copy this repo to the cookie
 rsync -av --progress . $COOKIED/                                \
     --exclude .git                                              \
     --exclude __pycache__
@@ -87,19 +88,25 @@ rm -rf mappings.json
 rsync -av --remove-source-files --progress $COOKIED/TemplateExample/ $COOKIED/'{{cookiecutter.project_name}}'/
 
 # Push the change
-#   use the last commit message of this repository 
-#   for the  cookiecutter
+#   use the last commit message of this repository  for the  cookiecutter
+
 PREV=$(pwd)
 MESSAGE=$(git show -s --format=%s)
 
-cd $dest
-
+git checkout master
 git checkout -b auto
-git add --all
-git commit -m "$MESSAGE"
-git push origin auto
-# git checkout master
-# git branch -D auto
 
-# Remove the folder
-cd $PREV
+# Copy back 
+rsync -av --remove-source-files --progress $COOKIED .
+
+if [ -n "$(git diff --exit-code)" ]; then
+    git add --all
+    git commit -m "$MESSAGE"
+    git push origin auto
+
+    if which gh &> /dev/null; then
+        gh pr create -B master -H auto --title 'Auto Sync' --body 'Created by Github action'
+    fi
+else
+    echo "Nothing to commit exit"
+fi
