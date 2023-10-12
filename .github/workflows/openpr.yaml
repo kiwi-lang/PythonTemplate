@@ -1,0 +1,21 @@
+name: openpr
+
+on:
+  workflow_dispatch:
+
+jobs:
+  openpr:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+  
+    - name: dependencies
+      run: | 
+        sudo apt-get install -y git rsync jq
+
+    - name: OpenPR
+      env:
+        PAT: ${{ secrets.PUSH_KEY }}
+      run: |
+        bash scripts/generate_cookie.sh
