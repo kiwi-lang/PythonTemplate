@@ -1,6 +1,9 @@
 global-exclude *.pyc
 global-exclude __pycache__
-recursive-include {{cookiecutter.project_name}}/* *.json
+
+recursive-include {{cookiecutter.project_name}} *.json
+recursive-include {{cookiecutter.project_name}} *.py
+
 include LICENSE
 include requirements.txt
 
