@@ -1,0 +1,153 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f7fafc;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: white;
+  border-right: 1px solid #e2e8f0;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+.sidebar-header {
+  padding: 2rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.sidebar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f56500;
+  margin: 0;
+}
+
+.sidebar-nav {
+  padding: 1rem 0;
+}
+
+.nav-section {
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.nav-section:last-child {
+  margin-bottom: 0;
+}
+
+.nav-section-title {
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #718096;
+  margin-bottom: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.nav-section-title:hover {
+  color: #f56500;
+}
+
+.nav-section-title:visited {
+  color: #718096;
+}
+
+.nav-section-title:visited:hover {
+  color: #f56500;
+}
+
+.nav-section-title.active-section {
+  color: #f56500;
+  font-weight: 800;
+}
+
+.nav-section-items {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.nav-section.expanded {
+  margin-bottom: 1.5rem;
+}
+
+.nav-section.expanded .nav-section-items {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.nav-section.collapsed .nav-section-items {
+  max-height: 0;
+  opacity: 0;
+}
+
+.nav-item {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: #2d3748;
+  text-decoration: none;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.nav-item:hover {
+  background-color: #f7fafc;
+  color: #f56500;
+  border-left-color: #f56500;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 240px;
+  padding: 1rem;
+}
+
+.content-wrapper {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  min-height: calc(100vh - 6rem);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+/* Hover effects */
+.nav-item:hover {
+  transform: translateX(4px);
+}
+
+/* Active state styling */
+.nav-item.active {
+  background-color: #fed7d7;
+  color: #f56500;
+  border-left-color: #f56500;
+  font-weight: 600;
+}

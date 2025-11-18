@@ -35,7 +35,11 @@ if __name__ == "__main__":
             "{{cookiecutter.project_name}}.plugins.example",
         ],
         setup_requires=["setuptools"],
-        install_requires=["importlib_resources"],
+        install_requires=[
+            "importlib_resources",
+            "flask",
+            "argklass",
+        ],
         package_data={
             "{{cookiecutter.project_name}}.data": [
                 "{{cookiecutter.project_name}}/data",
