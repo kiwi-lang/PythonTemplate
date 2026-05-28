@@ -13,11 +13,11 @@ from argklass.plugin import discover_module_commands, with_cache_location
 
 
 def discover_commands():
-    import {{cookiecutter.project_name}}.cli.commands
+    import {{cookiecutter.project_name}}.cli
     import {{cookiecutter.project_name}}.plugins
 
     return discover_module_commands(
-        {{cookiecutter.project_name}}.cli.commands,
+        {{cookiecutter.project_name}}.cli,
         {{cookiecutter.project_name}}.plugins,
     ).found_commands
 

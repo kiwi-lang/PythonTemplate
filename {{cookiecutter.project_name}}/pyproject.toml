@@ -19,6 +19,7 @@ dependencies = [
     "sqlalchemy>=2.0",
     "alembic",
     "httpx",
+    "python-multipart",
 ]
 
 [project.optional-dependencies]
