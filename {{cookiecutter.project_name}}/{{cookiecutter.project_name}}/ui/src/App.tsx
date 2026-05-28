@@ -10,7 +10,7 @@ const system = createSystem(defaultConfig);
 
 function Home() {
   return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
+    <div className="home">
       <h1>{{cookiecutter.project_name}}</h1>
       <p>{{cookiecutter.description}}</p>
     </div>
