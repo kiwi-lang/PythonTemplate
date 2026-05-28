@@ -1,7 +1,5 @@
-from flask import Flask
+"""{{cookiecutter.project_name}} FastAPI server."""
 
+from .app import create_app
 
-def main():
-    app = Flask(__name__)
-    return app
-
+__all__ = ["create_app"]

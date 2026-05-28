@@ -1,33 +1,46 @@
+PROJECT = {{cookiecutter.project_name}}
+
+.PHONY: install dev front back build-ui test lint clean
+
 install:
-	pip install -e .[all]
-	pip install -r requirements.txt
-	pip install -r docs/requirements.txt
-	pip install -r tests/requirements.txt
+	uv pip install -e ".[dev]"
 
-doc: build-doc
-
-build-doc:
-	sphinx-build -W --color -c docs/ -b html docs/ _build/html
-
-serve-doc:
-	sphinx-serve
-
-update-doc: build-doc serve-doc
-
-CONDA_ACTIVATE=. $$(conda info --base)/etc/profile.d/conda.sh ; conda activate
+dev: front back
 
 front:
-	cd {{cookiecutter.project_name}}/ui && npm run dev
+	cd $(PROJECT)/ui && npm run dev
 
 back:
-	($(CONDA_ACTIVATE) py310; python -m {{cookiecutter.project_name}}.server.main)
+	$(PROJECT) serve
 
-alembic_gen:
-	cd {{cookiecutter.project_name}}/alembic && alembic revision -m "create account table"
+build-ui:
+	cd $(PROJECT)/ui && npm ci && VITE_API_URL= VITE_BASE_PATH=/ npm run build
+
+build: build-ui
+	python -m build
+
+test:
+	pytest tests/
+
+lint:
+	ruff check .
+	ruff format --check .
+
+format:
+	ruff check --fix .
+	ruff format .
+
+# Alembic targets
+alembic-gen:
+	cd $(PROJECT)/alembic && alembic revision -m "$(msg)"
 
 alembic-autogen:
-	cd {{cookiecutter.project_name}}/alembic && alembic revision --autogenerate -m "makefile"
+	cd $(PROJECT)/alembic && alembic revision --autogenerate -m "$(msg)"
 
-alembic-update:
-	cd {{cookiecutter.project_name}}/alembic && alembic upgrade head
+alembic-upgrade:
+	cd $(PROJECT)/alembic && alembic upgrade head
 
+clean:
+	rm -rf dist/ build/ *.egg-info
+	rm -rf $(PROJECT)/server/static
+	find . -type d -name __pycache__ -exec rm -rf {} +

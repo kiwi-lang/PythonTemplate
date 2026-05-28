@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{{cookiecutter.project_name}}"
+version = "{{cookiecutter.version}}"
+description = "{{cookiecutter.description}}"
+readme = "README.md"
+license = "{{cookiecutter.license}}"
+requires-python = ">={{cookiecutter.python_version}}"
+authors = [
+    { name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}" },
+]
+dependencies = [
+    "argklass",
+    "fastapi",
+    "uvicorn[standard]",
+    "sqlalchemy>=2.0",
+    "alembic",
+    "httpx",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "pytest-asyncio",
+    "ruff",
+    "pre-commit",
+]
+
+[project.scripts]
+"{{cookiecutter.project_name}}" = "{{cookiecutter.project_name}}.cli:main_force"
+
+[tool.setuptools.packages.find]
+include = ["{{cookiecutter.project_name}}*"]
+
+[tool.setuptools.package-data]
+"{{cookiecutter.project_name}}.server" = ["static/**/*"]
+"{{cookiecutter.project_name}}.data" = ["*"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
